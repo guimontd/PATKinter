@@ -12,7 +12,9 @@ def gerar_senha():
         if tamanho<8:
             resultado.config(text="A senha deve ter no mínimo 8 caracteres")
         else:
+            #os comandos de string puxam as letras e adicionei os especiais manualmente
             caracteres = string.ascii_letters + string.digits + "!@#$%*"
+            #choice escolhe um aleatório
             senha = ''.join(random.choice(caracteres) for i in range(tamanho))
             resultado.config(text=(senha))
     except ValueError:
@@ -25,12 +27,14 @@ root.rowconfigure(0, weight=1)
 
 texto = ttk.Label(mainframe, text="Digite o tamanho da senha (Mínimo 8 digitos)")
 
+#16 caracteres no max
 entrada = ttk.Entry(mainframe, width=16)
 
 botao = ttk.Button(mainframe, text="Gerar Senha", command=gerar_senha)
 
 resultado = ttk.Label(mainframe, text="")
 
+#deixa bonitinho
 for child in mainframe.winfo_children():
     child.grid_configure(padx=5, pady=5)
 
